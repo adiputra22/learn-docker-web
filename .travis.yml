@@ -7,3 +7,16 @@ before_install:
 
 script:
   - docker run -e CI=true adiputra22/learn-docker-web npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-west-2"
+  app: "learn-docker-web"
+  env: "Learndockerweb-env"
+  bucket_name: "elasticbeanstalk-us-west-2-265670431514"
+  bucket_path: "learn-docker-web"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: 
+    secure: "$AWS_SECRET_KEY"
